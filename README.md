@@ -2,6 +2,8 @@
 
 A standalone, mobile-first hybrid of the live Canidine guest menu and the V3 design direction.
 
+**Live prototype:** https://canidine-mobile-guest-prototype.vercel.app
+
 ## Preserved product behaviors
 
 - Restaurant identity and branding
