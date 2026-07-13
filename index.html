@@ -26,7 +26,7 @@
         <header class="app-header">
           <a href="https://canidine.com/directory" aria-label="Back to restaurant directory" class="icon-button">←</a>
           <div class="restaurant-identity"><span id="restaurantInitial">T</span><div><strong id="headerRestaurant">Terra Cucina</strong><small id="headerCuisine">Italian</small></div></div>
-          <button class="language-button" id="languageButton" aria-label="Change language"><span>文</span><b id="languageCode">EN</b><i>⌄</i></button>
+          <button class="language-button" id="languageButton" aria-label="Change language"><span>文</span><b id="languageCode">English</b><i>⌄</i></button>
         </header>
 
         <section class="restaurant-hero">
@@ -43,22 +43,22 @@
           <article class="passport-summary" id="passportSummary">
             <button class="passport-main" id="openPassport">
               <span class="passport-symbol">✦</span>
-              <span class="passport-copy"><small id="passportEyebrow">MY SAFETY PASSPORT</small><strong id="passportTitle">Set your dietary needs</strong><em id="passportDescription">Allergies, diets, medical needs and custom restrictions</em></span>
-              <span class="passport-action" id="passportAction">Set up <b>→</b></span>
+              <span class="passport-copy"><small id="passportEyebrow">MAKE THIS MENU YOURS</small><strong id="passportTitle">Personalize this menu</strong><em id="passportDescription">Choose allergies, diets, or other food needs</em></span>
+              <span class="passport-action" id="passportAction">Start <b>→</b></span>
             </button>
             <div class="active-profile" id="activeProfile" hidden></div>
           </article>
 
-          <button class="cross-contact-compact" id="openSafetyInfo"><span>ⓘ</span><span><strong id="crossContactTitle">Cross-contact &amp; safety</strong><small id="crossContactSubtitle">Important information before ordering</small></span><b>›</b></button>
+          <button class="cross-contact-compact" id="openSafetyInfo"><span>ⓘ</span><span><strong id="crossContactTitle">Important safety information</strong><small id="crossContactSubtitle">Read this if your allergy is serious</small></span><b>›</b></button>
         </section>
 
         <section class="menu-content">
-          <div class="result-heading"><div><small id="resultEyebrow">CURRENT MENU</small><h3 id="resultTitle">All dishes</h3><p id="resultMeta">Loading real menu…</p></div><button id="layoutButton" aria-label="Change menu density">☷</button></div>
+          <div class="result-heading"><div><small id="resultEyebrow">CURRENT MENU</small><h3 id="resultTitle">All dishes</h3><p id="resultMeta">Loading real menu…</p></div></div>
           <div class="status-filters" id="statusFilters" hidden>
             <button class="active" data-status-filter="all">All <span id="allCount">0</span></button>
-            <button data-status-filter="clear"><i class="dot clear"></i><span id="clearFilterLabel">No conflict</span> <b id="clearCount">0</b></button>
-            <button data-status-filter="modify"><i class="dot modify"></i><span id="modifyFilterLabel">Modify</span> <b id="modifyCount">0</b></button>
-            <button data-status-filter="avoid"><i class="dot avoid"></i><span id="avoidFilterLabel">Avoid</span> <b id="avoidCount">0</b></button>
+            <button data-status-filter="clear"><i class="dot clear"></i><span id="clearFilterLabel">No match found</span> <b id="clearCount">0</b></button>
+            <button data-status-filter="modify"><i class="dot modify"></i><span id="modifyFilterLabel">Ask for a change</span> <b id="modifyCount">0</b></button>
+            <button data-status-filter="avoid"><i class="dot avoid"></i><span id="avoidFilterLabel">Do not order</span> <b id="avoidCount">0</b></button>
           </div>
           <div class="verification-strip" id="verificationStrip" hidden><span>✓</span><p><strong id="verificationTitle">Rule check complete</strong><small id="verificationCopy">Results use the restaurant’s current public menu data.</small></p></div>
           <div class="menu-sections" id="menuSections"><div class="loading-state"><i></i><span>Loading Terra Cucina’s menu…</span></div></div>
@@ -69,26 +69,14 @@
     </div>
 
     <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
-    <section class="bottom-sheet passport-sheet" id="passportSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+    <section class="bottom-sheet passport-sheet simple-wizard" id="passportSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
       <div class="sheet-handle"></div>
-      <header class="sheet-header"><div><small id="sheetEyebrow">YOUR SAFETY PASSPORT</small><h2 id="sheetTitle">What should this menu account for?</h2></div><button id="closePassport" aria-label="Close Safety Passport">×</button></header>
+      <header class="sheet-header"><div><small id="sheetEyebrow">PERSONALIZE YOUR MENU</small><h2 id="sheetTitle">Tell us what you need</h2><p class="step-label" id="stepLabel">Step 1 of 3</p></div><button id="closePassport" aria-label="Close menu setup">×</button></header>
       <div class="sheet-body">
-        <div class="profile-selected" id="profileSelected" hidden><small id="selectedLabel">SELECTED</small><div id="selectedChips"></div></div>
-
-        <label class="allergen-search"><span>⌕</span><input id="allergenSearch" placeholder="Search allergies or ingredients" autocomplete="off" /></label>
-
-        <div class="picker-groups" id="pickerGroups"></div>
-
-        <section class="picker-section severity-section">
-          <div><span class="section-icon warning">!</span><div><strong id="severeTitle">Severe allergy mode</strong><p id="severeCopy">Treat shared equipment or cross-contact exposure as Avoid until restaurant staff confirms otherwise.</p></div></div>
-          <button class="switch" id="severeSwitch" role="switch" aria-checked="false"><i></i></button>
-        </section>
-
-        <section class="picker-section diet-section"><div class="picker-section-title"><span class="section-icon">◇</span><div><strong id="dietTitle">Diets &amp; medical conditions</strong><p id="dietCopy">Diet filters require the restaurant to mark a dish compatible.</p></div></div><div class="choice-grid" id="dietChoices"></div></section>
-
-        <section class="picker-section custom-section"><div class="picker-section-title"><span class="section-icon sparkle">✦</span><div><strong id="customTitle">Have an unusual restriction?</strong><p id="customCopy">Describe it in plain language. This prototype matches exact public ingredient terms and flags anything uncertain for staff.</p></div></div><div class="custom-input"><input id="customRestriction" placeholder="e.g. no alcohol or honey" /><button id="addCustom">Add</button></div><div id="customFeedback" class="custom-feedback"></div></section>
+        <div class="wizard-progress"><i id="wizardProgress"></i></div>
+        <div class="wizard-step" id="wizardStep"></div>
       </div>
-      <footer class="sheet-footer"><button class="clear-button" id="clearProfile">Clear</button><button class="apply-button" id="applyProfile"><span id="applyLabel">Apply to menu</span><b id="applyCount">0 selected</b></button></footer>
+      <footer class="sheet-footer wizard-footer"><button class="clear-button" id="wizardBack">Back</button><button class="apply-button" id="wizardNext"><span id="wizardNextLabel">Next</span><b>→</b></button></footer>
     </section>
 
     <section class="bottom-sheet info-sheet" id="infoSheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle" hidden>
